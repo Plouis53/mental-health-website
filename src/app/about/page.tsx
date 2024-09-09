@@ -1,3 +1,9 @@
+// import { title } from "process";
+
+export const Metadata = {
+  title: "About Codevolution",
+};
+
 export default function About() {
   return (
     <div>
