@@ -1,14 +1,45 @@
+// Make sure this component is client-side
+"use client";
+
+import { motion } from "framer-motion";
 import Hero from "@/section/Hero";
 import Posts from "@/section/Posts";
 
 export default function Home() {
   return (
     <main id="main">
-      <Hero />
-      <Posts />
+      {/* Animated Hero Section */}
+      <motion.div
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <Hero />
+      </motion.div>
+
+      {/* Animated Posts Section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5 }}
+      >
+        <Posts />
+      </motion.div>
     </main>
   );
 }
+
+// import Hero from "@/section/Hero";
+// import Posts from "@/section/Posts";
+
+// export default function Home() {
+//   return (
+//     <main id="main">
+//       <Hero />
+//       <Posts />
+//     </main>
+//   );
+// }
 
 // export default function Home() {
 //   return (
