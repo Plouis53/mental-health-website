@@ -1,5 +1,3 @@
-import { resolve } from "path";
-import { title } from "process";
 import { Metadata } from "next";
 
 type Props = {
