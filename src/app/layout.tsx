@@ -19,15 +19,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header style={{ backgroundColor: "lightblue", padding: "1rem" }}>
-          <Header />
-        </header>
+        {/* <header style={{ backgroundColor: "lightblue", padding: "1rem" }}> */}
+        <Header />
+        {/* </header> */}
         {/* Main content */}
         {children}
-        <footer style={{ backgroundColor: "ghostwhite", padding: "1rem" }}>
-          {/* Footer component */}
-          <Footer />
-        </footer>
+        {/* <footer style={{ backgroundColor: "ghostwhite", padding: "1rem" }}> */}
+        {/* Footer component */}
+        <Footer />
+        {/* </footer> */}
       </body>
     </html>
   );

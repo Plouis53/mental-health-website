@@ -1,4 +1,49 @@
+/* global.css */
+
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Override Tailwind's default body styles if necessary */
+body {
+  font-family: "EB Garamond", sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+/* Define custom CSS variables if needed */
+:root {
+  --font-default: "EB Garamond", system-ui, sans-serif;
+  --font-primary: "EB Garamond", serif;
+  --font-secondary: "Inter", sans-serif;
+
+  --color-primary: #212529;
+  --color-secondary: #596d80;
+  --color-accent: #6f42c1;
+}
+
+/* Use these variables in global or specific components */
+h1 {
+  font-family: var(--font-primary);
+  color: var(--color-primary);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+/* Example of using global utility styles */
+.custom-heading {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -30,4 +75,4 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-}
+} */
