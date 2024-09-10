@@ -1,5 +1,5 @@
 import Link from "next/link";
-import SearchBar from "./SearchBar";
+// import SearchBar from "./SearchBar";
 import React from "react";
 import { navs } from "@/data/data";
 
