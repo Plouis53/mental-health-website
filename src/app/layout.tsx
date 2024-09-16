@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 // Rename this to avoid conflict with Inter
-const EB_Garamond_Font = EB_Garamond({ subsets: ["latin"] });
+const interFont = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Calm Play",
@@ -19,11 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={Inter.className}>
+      <body className={interFont.className}>
         <Header />
-
         {children}
-
         <Footer />
       </body>
     </html>
