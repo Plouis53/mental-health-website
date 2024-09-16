@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google"; // Keep the Inter font import
+import { Inter } from "next/font/google";
+import "./styles/variables.css";
 import "./styles/globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-// Rename this to avoid conflict with Inter
 const interFont = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
