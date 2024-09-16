@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "./header.css";
 import Nav from "../Navigation/Nav";
+import Sci from "../Social/sci";
 
 export default function Header() {
   return (
@@ -13,6 +14,7 @@ export default function Header() {
         </a>
         <Nav />
         <div className="position-relative"></div>
+        <Sci />
       </div>
     </header>
   );

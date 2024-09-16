@@ -37,16 +37,16 @@ export const scis = [
     icon: "bi-linkedin",
     link: "https://www.linkedin.com/in/phillippe-pmpisintech/",
   },
-  {
-    id: 2,
-    icon: "bi-sondermind",
-    link: "https://www.sondermind.com/providers/ix4jd398/phil-louis",
-  },
-  {
-    id: 3,
-    icon: "bi-betterhelp",
-    link: "https://www.betterhelp.com/phillippe-louis/",
-  },
+  // {
+  //   id: 2,
+  //   icon: "bi-sondermind",
+  //   link: "https://www.sondermind.com/providers/ix4jd398/phil-louis",
+  // },
+  // {
+  //   id: 3,
+  //   icon: "bi-betterhelp",
+  //   link: "https://www.betterhelp.com/phillippe-louis/",
+  // },
 ];
 
 export const heroSlides = [
