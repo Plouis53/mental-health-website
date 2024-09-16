@@ -1,3 +1,9 @@
+import "bootstrap-icons/font/bootstrap-icons.css";
+
+import "bootstrap/dist/css/bootstrap.css";
+
+import "aos/dist/aos.css";
+
 import type { Metadata } from "next";
 import { EB_Garamond } from "next/font/google";
 
