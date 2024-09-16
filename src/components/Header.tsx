@@ -7,7 +7,7 @@ export default function Header() {
       <div className="container mx-auto px-8 py-8 flex justify-end items-center pr-8">
         <a href="/" className="logo flex items-center space-x-4">
           {/* Significantly larger font size and moved title far to the right */}
-          <h1 className="font-bold text-7xl mr-0">Calm Play</h1>
+          {/* <h1 className="font-bold text-7xl mr-0">Calm Play</h1> */}
         </a>
       </div>
     </header>
