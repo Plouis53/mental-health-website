@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { EB_Garamond } from "next/font/google";
+
+import Header from "../components/Header/Header";
+
 import "./styles/variables.css";
 import "./styles/globals.css";
-import Header from "../components/Header/Header";
 // import Footer from "../components/Footer";
 
-const interFont = Inter({ subsets: ["latin"] });
+const ebGaramond = EB_Garamond({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Calm Play",
@@ -19,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={interFont.className}>
+      <body className={ebGaramond.className}>
         <Header />
         {children}
         {/* <Footer /> */}

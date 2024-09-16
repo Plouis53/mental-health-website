@@ -1,6 +1,7 @@
 import Link from "next/link";
 // import SearchBar from "./SearchBar";
 import React from "react";
+import "./nav.css";
 import { navs } from "@/data/data";
 
 export default function Navigation() {
