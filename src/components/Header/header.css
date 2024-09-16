@@ -1,25 +1,30 @@
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
+
+/* Header styles */
 .header {
-  height: 90px;
-  transition: all 0.5s;
-  z-index: 997;
-  background: #f2f2f2;
+  background-color: #f2f2f2;
+  padding: 20px 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 
-.header.sticked {
-  height: 70px;
+/* Logo styling */
+.logo-text {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-right: 20px;
 }
 
-.header .logo img {
-  max-height: 40px;
-  margin-right: 6px;
-}
-
-.header .logo h1 {
-  font-size: 30px;
-  font-weight: 700;
-  color: var(--color-default);
-  font-family: var(--font-primary);
+/* Right section for search and social icons */
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
