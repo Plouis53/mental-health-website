@@ -1,5 +1,5 @@
-import React from "react";
-// import Image from "next/image";
+import React, {useState} from "react";
+// import header "./header.css"
 
 export default function Header() {
   return (
