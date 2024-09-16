@@ -1,5 +1,9 @@
 export default function Home() {
-  return <h1>Calm Play</h1>;
+  return (
+    <div>
+      <h1>Welcome to Calm Play</h1>
+    </div>
+  );
 }
 
 // import Hero from "@/section/Hero";
