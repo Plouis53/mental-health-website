@@ -1,8 +1,13 @@
+import Hero from "@/section/Hero";
+import Posts from "@/section/Posts";
+
 export default function Home() {
   return (
-    <div>
-      <h1>Welcome to Calm Play</h1>
-    </div>
+    <main id="main">
+      {/* <h1>Welcome to Calm Play</h1> */}
+      <Hero />
+      <Posts />
+    </main>
   );
 }
 

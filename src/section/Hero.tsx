@@ -1,20 +1,17 @@
-"use client";
-
-import { motion } from "framer-motion";
+import React from "react";
 
 export default function Hero() {
-  return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="hero-section"
-    >
-      <h1 className="text-4xl font-bold">Welcome to Calm Play</h1>
-      <p className="mt-4 text-lg">
-        Your ultimate destination for mindfulness and relaxation through
-        engaging and fun activities.
-      </p>
-    </motion.section>
-  );
+  return <h1>Welcome to Calm Play</h1>;
 }
+
+// export default function Hero() {
+//   return (
+
+//       <h1 className="text-4xl font-bold">Welcome to Calm Play</h1>
+//       <p className="mt-4 text-lg">
+//         Your ultimate destination for mindfulness and relaxation through
+//         engaging and fun activities.
+//       </p>
+
+//   );
+// }
