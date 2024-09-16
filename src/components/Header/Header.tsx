@@ -1,15 +1,17 @@
 "use client";
 import React, { useState } from "react";
 import "./header.css";
+import Nav from "../Navigation/Nav";
 
 export default function Header() {
   return (
     <header id="header" className="header d-flex align-items-center fixed-top">
       <div className="container-fluid container-xl d-flex align-items-center justify-content-between">
         <a href="/" className="logo d-flex align-items-center">
-          {/* <img src="" alt="" /> */}
+          {/* <img src="/images/keep-calm.png" alt="Calm Play Logo" width={80} height={80} /> */}
           <h1>Calm Play</h1>
         </a>
+        <Nav />
       </div>
     </header>
   );

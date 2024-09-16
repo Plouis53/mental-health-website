@@ -10,7 +10,13 @@ export default function Navigation() {
       <ul>
         {navs.map((nav) => (
           <li key={nav.id}>
-            <Link href={nav.link}>{nav.name}</Link>
+            <Link href={nav.link}>
+              {nav.name === "Home" ? (
+                <i className="bi bi-house-door-fill"></i>
+              ) : (
+                nav.name
+              )}
+            </Link>
           </li>
         ))}
       </ul>
