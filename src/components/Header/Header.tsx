@@ -1,13 +1,14 @@
-import React, {useState} from "react";
-// import header "./header.css"
+"use client";
+import React, { useState } from "react";
+import "./header.css";
 
 export default function Header() {
   return (
-    <header id="header" className="bg-gray-100 text-gray-900 shadow-md">
-      <div className="container mx-auto px-8 py-8 flex justify-end items-center pr-8">
-        <a href="/" className="logo flex items-center space-x-4">
-          {/* Significantly larger font size and moved title far to the right */}
-          {/* <h1 className="font-bold text-7xl mr-0">Calm Play</h1> */}
+    <header id="header" className="header d-flex align-items-center fixed-top">
+      <div className="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a href="/" className="logo d-flex align-items-center">
+          {/* <img src="" alt="" /> */}
+          <h1>Calm Play</h1>
         </a>
       </div>
     </header>
