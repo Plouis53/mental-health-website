@@ -12,6 +12,7 @@ export default function Header() {
           <h1>Calm Play</h1>
         </a>
         <Nav />
+        <div className="position-relative"></div>
       </div>
     </header>
   );

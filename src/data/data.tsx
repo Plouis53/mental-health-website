@@ -34,18 +34,18 @@ export const navs = [
 export const scis = [
   {
     id: 1,
-    icon: "bi-facebook",
-    link: "",
+    icon: "bi-linkedin",
+    link: "https://www.linkedin.com/in/phillippe-pmpisintech/",
   },
   {
     id: 2,
-    icon: "bi-twitter-x",
-    link: "",
+    icon: "bi-sondermind",
+    link: "https://www.sondermind.com/providers/ix4jd398/phil-louis",
   },
   {
     id: 3,
-    icon: "bi-instagram",
-    link: "",
+    icon: "bi-betterhelp",
+    link: "https://www.betterhelp.com/phillippe-louis/",
   },
 ];
 
