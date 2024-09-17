@@ -7,10 +7,17 @@ import SearchForm from "../SearchForm/searchForm";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [on, setOn] = useState(false);
 
-  const handleFormOpen = (e: Event | any) => {
+  const handleFormOpen = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     setOpen(!open);
+  };
+
+  const handleToggleMenu = () => {
+    setOn(!on);
+    let body: HTMLElement | any = document.querySelector("body");
+    body.classList.toggle("mobile-nav-active");
   };
 
   return (
@@ -21,13 +28,31 @@ export default function Header() {
         </a>
         <Nav />
         <div className="right-section d-flex align-items-center">
+          <Sci />
+
           {!open && (
             <a className="search-icon" onClick={handleFormOpen}>
               <span className="bi-search"></span>
             </a>
           )}
-          <SearchForm active={open} formOpen={handleFormOpen} />
-          <Sci />
+
+          {open && (
+            <div className="search-form-container">
+              <SearchForm active={open} formOpen={handleFormOpen} />
+            </div>
+          )}
+
+          {on ? (
+            <i
+              className="bi bi-x mobile-nav-toggle"
+              onClick={handleToggleMenu}
+            ></i>
+          ) : (
+            <i
+              className="bi bi-list mobile-nav-toggle"
+              onClick={handleToggleMenu}
+            ></i>
+          )}
         </div>
       </div>
     </header>
