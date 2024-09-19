@@ -21,39 +21,44 @@ export default function Header() {
   };
 
   return (
-    <header id="header" className="header">
-      <div className="container-fluid d-flex align-items-center justify-content-between">
+    <header id="header" className="header d-flex align-item-center fixed-top">
+      {/* <div className="container-fluid d-flex align-items-center justify-content-between"> */}
+      <div className="container-fluid container-xl d-flex align-items-center justify-content-between">
+        {" "}
         <a href="/" className="logo d-flex align-items-center">
           <h1 className="logo-text">Calm Play</h1>
         </a>
-        <Nav />
-        <div className="right-section d-flex align-items-center">
-          <Sci />
+      </div>
+      {/* <a href="/" className="logo d-flex align-items-center"> */}
+      {/* <h1 className="logo-text">Calm Play</h1> */}
+      {/* </a> */}
+      <Nav />
+      <div className="right-section d-flex align-items-center">
+        <Sci />
 
-          {!open && (
-            <a className="search-icon" onClick={handleFormOpen}>
-              <span className="bi-search"></span>
-            </a>
-          )}
+        {!open && (
+          <a className="search-icon" onClick={handleFormOpen}>
+            <span className="bi-search"></span>
+          </a>
+        )}
 
-          {open && (
-            <div className="search-form-container">
-              <SearchForm active={open} formOpen={handleFormOpen} />
-            </div>
-          )}
+        {open && (
+          <div className="search-form-container">
+            <SearchForm active={open} formOpen={handleFormOpen} />
+          </div>
+        )}
 
-          {on ? (
-            <i
-              className="bi bi-x mobile-nav-toggle"
-              onClick={handleToggleMenu}
-            ></i>
-          ) : (
-            <i
-              className="bi bi-list mobile-nav-toggle"
-              onClick={handleToggleMenu}
-            ></i>
-          )}
-        </div>
+        {on ? (
+          <i
+            className="bi bi-x mobile-nav-toggle"
+            onClick={handleToggleMenu}
+          ></i>
+        ) : (
+          <i
+            className="bi bi-list mobile-nav-toggle"
+            onClick={handleToggleMenu}
+          ></i>
+        )}
       </div>
     </header>
   );
