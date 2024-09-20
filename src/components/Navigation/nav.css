@@ -133,8 +133,8 @@
 }
 
 /*--------------------------------------------------------------
-    # Mobile Navigation
-    --------------------------------------------------------------*/
+  # Mobile Navigation
+  --------------------------------------------------------------*/
 @media (max-width: 1279px) {
   .navbar {
     padding: 0;
@@ -206,7 +206,6 @@
     cursor: pointer;
     line-height: 0;
     transition: 0.5s;
-    padding-right: 10px;
   }
 
   .mobile-nav-toggle.bi-x {

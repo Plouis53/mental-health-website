@@ -6,12 +6,12 @@ export default function SearchForm({
   formOpen,
 }: {
   active: boolean;
-  formOpen: Object | any;
+  formOpen: object | any;
 }) {
   return (
     <div
       className={`search-form-wrap js-search-form-wrap ${
-        active ? "active" : ""
+        active ? "active" : undefined
       }`}
     >
       <form className="search-form">

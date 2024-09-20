@@ -42,11 +42,11 @@ export const scis = [
     icon: "bi-facebook",
     link: "https://www.facebook.com/SonderMind",
   },
-  // {
-  //   id: 3,
-  //   icon: "bi-betterhelp",
-  //   link: "https://www.betterhelp.com/phillippe-louis/",
-  // },
+  {
+    id: 3,
+    icon: "bi-instagram",
+    link: "https://www.instagram.com/betterhelp/?hl=en",
+  },
 ];
 
 export const heroSlides = [

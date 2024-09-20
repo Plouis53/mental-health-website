@@ -1,98 +1,25 @@
-/* Header styles */
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
 .header {
-  background-color: #f2f2f2;
-  padding: 20px 40px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 999;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
+  height: 90px;
+  transition: all 0.5s;
+  z-index: 997;
+  background: #f2f2f2;
 }
 
-/* Ensure the logo-text stays horizontal */
-.logo {
-  display: flex; /* Make sure items are in a row */
-  align-items: center; /* Align the text and any image vertically */
+.header.sticked {
+  height: 70px;
 }
 
-.logo-text {
-  font-size: 2rem; /* Adjust size as needed */
-  font-weight: bold;
-  color: #333;
-  margin-right: 10px;
-  white-space: nowrap; /* Prevents text from wrapping onto the next line */
-  text-align: left;
+.header .logo img {
+  max-height: 40px;
+  margin-right: 6px;
 }
 
-/* Right section for search and social icons */
-.right-section {
-  display: flex;
-  align-items: center;
-  /* gap: 15px;  */
-  justify-content: flex-start; /* Align to left */
-  /* margin-left: 20px;  */
-}
-
-/* Social icons */
-.social-link {
-  font-size: 1.5rem;
-  color: #333;
-  transition: color 0.3s ease;
-  margin-right: 2px; /* Optional: reduce space between icons */
-}
-
-/* Search icon */
-.search-icon {
-  /* font-size: 1.5rem; */
-  color: #333;
-  cursor: pointer;
-  margin-left: 5px; /* Adjust spacing for the search icon */
-}
-
-/* Search Form container */
-.search-form-container {
-  position: absolute;
-  right: 20px;
-  top: 50px;
-  display: flex;
-  align-items: center;
-  background-color: #f2f2f2;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Style for search input inside the form */
-.search-form-container .form-control {
-  width: 200px;
-  border: none;
-  padding: 5px 10px;
-  margin-right: 10px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.search-form-container .form-control:focus {
-  outline: none;
-  border: 2px solid #333;
-}
-
-/* Hide search form when not active */
-.search-form-container.hidden {
-  display: none;
-}
-
-/* Search icon hover */
-.search-icon:hover {
-  color: #0073b1; /* Adjust the hover color */
-}
-
-/* Responsive styling */
-@media (max-width: 768px) {
-  .search-form-container {
-    right: 10px;
-    top: 60px;
-  }
+.header .logo h1 {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--color-default);
+  font-family: var(--font-primary);
 }

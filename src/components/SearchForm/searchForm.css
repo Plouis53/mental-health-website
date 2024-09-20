@@ -1,11 +1,15 @@
+/*--------------------------------------------------------------
+# Search
+--------------------------------------------------------------*/
+
 .search-form-wrap {
   position: absolute;
   right: 0;
-  top: 0;
+  top: 27px;
+  z-index: 9;
+  transition: 0.3s all ease;
   visibility: hidden;
   opacity: 0;
-  z-index: 9;
-  transition: visibility 0s, opacity 0.3s ease-in-out;
 }
 
 .search-form-wrap .search-form {
