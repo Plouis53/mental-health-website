@@ -1,5 +1,5 @@
-// import React from "react";
+import React from "react";
 
-// export default function Post() {
-//   return <h2>Latest Posts</h2>;
-// }
+export default function Post() {
+  return <h2>Latest Posts</h2>;
+}
