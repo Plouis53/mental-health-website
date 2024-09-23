@@ -27,5 +27,15 @@ export default function Hero() {
       mirror: false,
     });
   }, []);
-  return <h1>Welcome to Calm Play</h1>;
+  return (
+    <section id="hero-slider" className="hero-slider">
+      <div className="container-md" data-aos="fade-in">
+        <div className="row">
+          <div className="col-12">
+            {/* <Swiper>{heroSlides.map(slide=>())}</Swiper> */}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

@@ -1,5 +1,5 @@
-import Hero from "@/section/Hero";
-import Posts from "@/section/Posts";
+import Hero from "@/section/Hero/Hero";
+import Posts from "@/section/Post/Posts";
 
 export default function Home() {
   return (
