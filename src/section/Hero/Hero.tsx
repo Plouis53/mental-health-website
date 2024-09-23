@@ -32,7 +32,13 @@ export default function Hero() {
       <div className="container-md" data-aos="fade-in">
         <div className="row">
           <div className="col-12">
-            {/* <Swiper>{heroSlides.map(slide=>())}</Swiper> */}
+            <Swiper>
+              {heroSlides.map((slide) => (
+                <SwiperSlide>
+                  {/* include customized Hero slide template */}
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
       </div>
