@@ -17,6 +17,7 @@ import "swiper/css/navigation";
 
 // Import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import HeroSlide from "@/components/Heroslide/HeroSlide";
 
 export default function Hero() {
   useEffect(() => {
@@ -35,7 +36,7 @@ export default function Hero() {
             <Swiper>
               {heroSlides.map((slide) => (
                 <SwiperSlide>
-                  {/* include customized Hero slide template */}
+                  <HeroSlide slide={slide} />
                 </SwiperSlide>
               ))}
             </Swiper>
