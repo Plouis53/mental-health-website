@@ -9,14 +9,14 @@ export default function Posts() {
   const [items, setItems] = useState<any | []>([]);
 
   const getItemsData = () => {
-    fetch("/api/postitems");
-    .then ( res=>res.json())
-    .then ( data=>setItems(data))
-    .catch ( e=> console.log (e.message))
+    fetch("/api/postitems")
+      .then((res) => res.json())
+      .then((data) => setItems(data))
+      .catch((e) => console.log(e.message));
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     getItemsData();
-  }, [])
-  // return <h2>Latest Posts</h2>;
+  }, []);
+  return <h2>Latest Posts</h2>;
 }
