@@ -17,7 +17,7 @@ import "swiper/css/navigation";
 
 // Import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import HeroSlide from "@/components/Heroslide/HeroSlide";
+import HeroSlide from "@/components/HeroSlide/HeroSlide";
 
 export default function Hero() {
   useEffect(() => {
