@@ -6,7 +6,7 @@ import "./posts.css";
 
 export default function Posts() {
   const router = useRouter();
-  const [items, setItems] = useState<any | []>([]);
+  const [items, setItems] = useState<any[]>([]);
 
   const getItemsData = () => {
     fetch("/api/postitems")
@@ -18,5 +18,16 @@ export default function Posts() {
   useEffect(() => {
     getItemsData();
   }, []);
-  return <h2>Latest Posts</h2>;
+
+  return (
+    <section id="posts" className="posts">
+      <div className="container" data-aos="fade-up">
+        {items &&
+          items.length > 0 &&
+          items.map((item: { _id: string; title: string }) => (
+            <p key={item._id}>{item.title}</p>
+          ))}
+      </div>
+    </section>
+  );
 }
