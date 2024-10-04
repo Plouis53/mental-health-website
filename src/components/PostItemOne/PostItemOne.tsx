@@ -19,7 +19,7 @@ export default function PostItemOne({
   };
 }) {
   return (
-    <div className={`post-entry-1 ${large ? "lg" : ""}`}>
+    <div className={`post-entry-1 ${large ? "lg" : undefined}`}>
       <Link href={`/postitems/${item._id}`}>
         <img src={`/${item.img}`} alt="" className="img-fluid" />
       </Link>
@@ -29,6 +29,7 @@ export default function PostItemOne({
           <i className="bi bi-dot"></i>
           {""}
         </span>
+        {""}
         <span>{new Date(item.date).toLocaleDateString("en-US")}</span>
       </div>
       <h2>

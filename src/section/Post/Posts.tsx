@@ -8,6 +8,7 @@ import PostItemOne from "@/components/PostItemOne/PostItemOne";
 export default function Posts() {
   const router = useRouter();
   const [items, setItems] = useState<any[]>([]);
+  const [item, setItem] = useState({});
 
   const getItemsData = () => {
     fetch("/api/postitems")
@@ -16,17 +17,32 @@ export default function Posts() {
       .catch((e) => console.log(e.message));
   };
 
+  const getSinglePostData = (id: string) => {
+    fetch(`/api/postitems/${id}`)
+      .then((res) => {
+        if (res.status === 404) {
+          router.push("/not-found");
+        }
+        return res.json();
+      })
+      .then((data) => setItem(data))
+      .catch((e) => console.log(e.message));
+  };
+
   useEffect(() => {
     getItemsData();
+    getSinglePostData("66fd8bb0b6331816dc6298de");
   }, []);
 
   return (
     <section id="posts" className="posts">
       <div className="container" data-aos="fade-up">
         <div className="row g-5">
-          <div className="col-lg-4"></div>
+          <div className="col-lg-4">
+            <PostItemOne large={true} item={item} />
+          </div>
           <div className="col-lg-8">
-            <div className="row g5">
+            <div className="row g-5">
               <div className="col-lg-4 border-start custom-border">
                 {items &&
                   items.length > 0 &&
