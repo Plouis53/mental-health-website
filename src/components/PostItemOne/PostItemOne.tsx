@@ -22,7 +22,6 @@ export default function PostItemOne({
     <div className={`post-entry-1 ${large ? "lg" : undefined}`}>
       <Link href={`/postitems/${item._id}`}>
         <img src={`/${item.img}`} alt="" className="img-fluid" />
-    
       </Link>
       <div className="post-meta">
         <span className="date">{item.category}</span>
