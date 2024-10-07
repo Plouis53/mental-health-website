@@ -7,7 +7,7 @@ import PostItemOne from "@/components/PostItemOne/PostItemOne";
 
 export default function Posts() {
   const router = useRouter();
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<any | []>([]);
   const [item, setItem] = useState({});
 
   const getItemsData = () => {
@@ -25,6 +25,7 @@ export default function Posts() {
         }
         return res.json();
       })
+
       .then((data) => setItem(data))
       .catch((e) => console.log(e.message));
   };
