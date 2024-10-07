@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import "./posts.css";
 import PostItemOne from "@/components/PostItemOne/PostItemOne";
+import TrendingPost from "@/components/Trending/TrendingPost";
 
 export default function Posts() {
   const router = useRouter();
@@ -47,23 +48,83 @@ export default function Posts() {
               <div className="col-lg-4 border-start custom-border">
                 {items &&
                   items.length > 0 &&
-                  items.map(
-                    (item: {
-                      _id: string;
-                      img: string;
-                      category: string;
-                      date: string;
-                      title: string;
-                      brief: string;
-                      avatar: string;
-                      author: string;
-                    }) => (
-                      <PostItemOne key={item._id} large={false} item={item} />
+                  items
+                    .filter(
+                      (item: { trending: boolean; top: boolean }) =>
+                        !item.trending && !item.top
                     )
-                  )}
+                    .slice(0, 3)
+                    .map(
+                      (item: {
+                        _id: string;
+                        img: string;
+                        category: string;
+                        date: string;
+                        title: string;
+                        brief: string;
+                        avatar: string;
+                        author: string;
+                      }) => (
+                        <PostItemOne key={item._id} large={false} item={item} />
+                      )
+                    )}
               </div>
-              <div className="col-lg-4"></div>
-              <div className="col-lg-4"></div>
+              <div className="col-lg-4 border-start custom-border">
+                {items &&
+                  items.length > 0 &&
+                  items
+                    .filter(
+                      (item: { trending: boolean; top: boolean }) =>
+                        !item.trending && !item.top
+                    )
+                    .slice(3, 6)
+                    .map(
+                      (item: {
+                        _id: string;
+                        img: string;
+                        category: string;
+                        date: string;
+                        title: string;
+                        brief: string;
+                        avatar: string;
+                        author: string;
+                      }) => (
+                        <PostItemOne key={item._id} large={false} item={item} />
+                      )
+                    )}
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="trending">
+                <h3>Trending</h3>
+                <ul className="trending-post">
+                  {item &&
+                    items.length > 0 &&
+                    items
+                      .filter((item: { trending: boolean }) => item.trending)
+                      .map(
+                        (
+                          item: {
+                            _id: string;
+                            img: string;
+                            category: string;
+                            date: string;
+                            title: string;
+                            brief: string;
+                            avatar: string;
+                            author: string;
+                          },
+                          index: number
+                        ) => (
+                          <TrendingPost
+                            key={item._id}
+                            index={index}
+                            item={item}
+                          />
+                        )
+                      )}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
