@@ -8,7 +8,7 @@ export default function PostItemOne({
 }: {
   large: boolean;
   item: {
-    _id: string;
+    _id: string; 
     img: string;
     category: string;
     date: string;
