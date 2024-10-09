@@ -18,22 +18,43 @@ export default function Posts() {
       .catch((e) => console.log(e.message));
   };
 
+  // const getSinglePostData = (id: string) => {
+  //   fetch(`/api/postitems/${id}`)
+  //     .then((res) => {
+  //       if (!res.status === 404) {
+  //         router.push("/not-found");
+  //       }
+  //       return res.json();
+  //     })
+
+  //     .then((data) => setItem(data))
+  //     .catch((e) => console.log(e.message));
+  // };
+
   const getSinglePostData = (id: string) => {
     fetch(`/api/postitems/${id}`)
       .then((res) => {
         if (res.status === 404) {
+          // Check if the response is a 404
           router.push("/not-found");
+          return; // Exit early if we are redirecting
         }
-        return res.json();
+        return res.json(); // Only parse JSON if the response is not 404
       })
-
-      .then((data) => setItem(data))
+      .then((data) => {
+        if (data) {
+          // Ensure data is valid before setting it
+          setItem(data);
+        } else {
+          console.log("No data returned");
+        }
+      })
       .catch((e) => console.log(e.message));
   };
 
   useEffect(() => {
     getItemsData();
-    getSinglePostData("66fd8bb0b6331816dc6298de");
+    getSinglePostData("6704948bfbe587fc2b9ef52d");
   }, []);
 
   return (
