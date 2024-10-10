@@ -5,7 +5,7 @@
 .search-form-wrap {
   position: absolute;
   right: 0;
-  top: 27px;
+  top: 0;
   z-index: 9;
   transition: 0.3s all ease;
   visibility: hidden;
