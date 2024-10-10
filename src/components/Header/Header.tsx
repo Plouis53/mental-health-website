@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import "./header.css";
 import Nav from "../Navigation/Nav";
@@ -21,17 +22,19 @@ export default function Header() {
   };
 
   return (
-    <header id="header" className="header d-flex align-item-center fixed-top">
+    <header id="header" className="header d-flex align-items-center fixed-top">
       <div className="container-fluid container-xl d-flex align-items-center justify-content-between">
         <a href="/" className="logo d-flex align-items-center">
-          <h1 className="logo-text">Calm Play</h1>
+          {/* <h1 className="logo-text">Calm Play</h1> */}
+          <h1>Calm Play</h1>
         </a>
         <Nav />
-        <div className="position_relative">
+        <div className="position-relative">
           <Sci />
           <a className="mx-2 js-search-open" onClick={handleFormOpen}>
             <span className="bi-search"></span>
           </a>
+
           {on ? (
             <i
               className="bi bi-x mobile-nav-toggle"
@@ -43,6 +46,7 @@ export default function Header() {
               onClick={handleToggleMenu}
             ></i>
           )}
+
           <SearchForm active={open} formOpen={handleFormOpen} />
         </div>
       </div>
