@@ -26,7 +26,7 @@ export default function Header() {
       <div className="container-fluid container-xl d-flex align-items-center justify-content-between">
         <a href="/" className="logo d-flex align-items-center">
           {/* <h1 className="logo-text">Calm Play</h1> */}
-          <h1>Calm Play</h1>
+          <h1>DigitalClinicalNews</h1>
         </a>
         <Nav />
         <div className="position-relative">
