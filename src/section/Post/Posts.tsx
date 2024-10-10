@@ -5,11 +5,12 @@ import { useRouter } from "next/navigation";
 import "./posts.css";
 import PostItemOne from "@/components/PostItemOne/PostItemOne";
 import TrendingPost from "@/components/Trending/TrendingPost";
+import Preloader from "@/components/Preloader/PreLoader";
 
 export default function Posts() {
   const router = useRouter();
   const [items, setItems] = useState<any | []>([]);
-  const [item, setItem] = useState({});
+  const [item, setItem] = useState<any>({});
 
   const getItemsData = () => {
     fetch("/api/postitems")
@@ -18,38 +19,20 @@ export default function Posts() {
       .catch((e) => console.log(e.message));
   };
 
-  // const getSinglePostData = (id: string) => {
-  //   fetch(`/api/postitems/${id}`)
-  //     .then((res) => {
-  //       if (!res.status === 404) {
-  //         router.push("/not-found");
-  //       }
-  //       return res.json();
-  //     })
-
-  //     .then((data) => setItem(data))
-  //     .catch((e) => console.log(e.message));
-  // };
-
   const getSinglePostData = (id: string) => {
     fetch(`/api/postitems/${id}`)
       .then((res) => {
         if (res.status === 404) {
-          // Check if the response is a 404
           router.push("/not-found");
-          return; // Exit early if we are redirecting
         }
-        return res.json(); // Only parse JSON if the response is not 404
+        return res.json();
       })
       .then((data) => {
-        if (data) {
-          // Ensure data is valid before setting it
-          setItem(data);
-        } else {
-          console.log("No data returned");
-        }
+        setItem(data);
       })
-      .catch((e) => console.log(e.message));
+      .catch((e) => {
+        console.log(e.message);
+      });
   };
 
   useEffect(() => {
@@ -67,8 +50,7 @@ export default function Posts() {
           <div className="col-lg-8">
             <div className="row g-5">
               <div className="col-lg-4 border-start custom-border">
-                {items &&
-                  items.length > 0 &&
+                {items && items.length > 0 ? (
                   items
                     .filter(
                       (item: { trending: boolean; top: boolean }) =>
@@ -88,11 +70,13 @@ export default function Posts() {
                       }) => (
                         <PostItemOne key={item._id} large={false} item={item} />
                       )
-                    )}
+                    )
+                ) : (
+                  <Preloader />
+                )}
               </div>
               <div className="col-lg-4 border-start custom-border">
-                {items &&
-                  items.length > 0 &&
+                {items && items.length > 0 ? (
                   items
                     .filter(
                       (item: { trending: boolean; top: boolean }) =>
@@ -112,39 +96,45 @@ export default function Posts() {
                       }) => (
                         <PostItemOne key={item._id} large={false} item={item} />
                       )
-                    )}
+                    )
+                ) : (
+                  <Preloader />
+                )}
               </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="trending">
-                <h3>Trending</h3>
-                <ul className="trending-post">
-                  {item &&
-                    items.length > 0 &&
-                    items
-                      .filter((item: { trending: boolean }) => item.trending)
-                      .map(
-                        (
-                          item: {
-                            _id: string;
-                            img: string;
-                            category: string;
-                            date: string;
-                            title: string;
-                            brief: string;
-                            avatar: string;
-                            author: string;
-                          },
-                          index: number
-                        ) => (
-                          <TrendingPost
-                            key={item._id}
-                            index={index}
-                            item={item}
-                          />
+
+              <div className="col-lg-4 ">
+                <div className="trending">
+                  <h3>Trending</h3>
+                  <ul className="trending-post">
+                    {items && items.length > 0 ? (
+                      items
+                        .filter((item: { trending: boolean }) => item.trending)
+                        .map(
+                          (
+                            item: {
+                              _id: string;
+                              img: string;
+                              category: string;
+                              date: string;
+                              title: string;
+                              brief: string;
+                              avatar: string;
+                              author: string;
+                            },
+                            index: number
+                          ) => (
+                            <TrendingPost
+                              key={item._id}
+                              index={index}
+                              item={item}
+                            />
+                          )
                         )
-                      )}
-                </ul>
+                    ) : (
+                      <Preloader />
+                    )}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
