@@ -7,10 +7,32 @@ import PostItemOne from "@/components/PostItemOne/PostItemOne";
 import TrendingPost from "@/components/Trending/TrendingPost";
 import Preloader from "@/components/Preloader/PreLoader";
 
+export interface PostProps {
+  _id: string;
+  img: string;
+  category: string;
+  date: string;
+  title: string;
+  brief: string;
+  avatar: string;
+  author: string;
+}
+
+const initialPost = {
+  _id: "",
+  img: "",
+  category: "",
+  date: "",
+  title: "",
+  brief: "",
+  avatar: "",
+  author: "",
+};
+
 export default function Posts() {
   const router = useRouter();
-  const [items, setItems] = useState<any | []>([]);
-  const [item, setItem] = useState<any>({});
+  const [items, setItems] = useState([]);
+  const [item, setItem] = useState(initialPost);
 
   const getItemsData = () => {
     fetch("/api/postitems")
@@ -57,20 +79,9 @@ export default function Posts() {
                         !item.trending && !item.top
                     )
                     .slice(0, 3)
-                    .map(
-                      (item: {
-                        _id: string;
-                        img: string;
-                        category: string;
-                        date: string;
-                        title: string;
-                        brief: string;
-                        avatar: string;
-                        author: string;
-                      }) => (
-                        <PostItemOne key={item._id} large={false} item={item} />
-                      )
-                    )
+                    .map((item: PostProps) => (
+                      <PostItemOne key={item._id} large={false} item={item} />
+                    ))
                 ) : (
                   <Preloader />
                 )}
@@ -83,20 +94,9 @@ export default function Posts() {
                         !item.trending && !item.top
                     )
                     .slice(3, 6)
-                    .map(
-                      (item: {
-                        _id: string;
-                        img: string;
-                        category: string;
-                        date: string;
-                        title: string;
-                        brief: string;
-                        avatar: string;
-                        author: string;
-                      }) => (
-                        <PostItemOne key={item._id} large={false} item={item} />
-                      )
-                    )
+                    .map((item: PostProps) => (
+                      <PostItemOne key={item._id} large={false} item={item} />
+                    ))
                 ) : (
                   <Preloader />
                 )}
@@ -109,27 +109,13 @@ export default function Posts() {
                     {items && items.length > 0 ? (
                       items
                         .filter((item: { trending: boolean }) => item.trending)
-                        .map(
-                          (
-                            item: {
-                              _id: string;
-                              img: string;
-                              category: string;
-                              date: string;
-                              title: string;
-                              brief: string;
-                              avatar: string;
-                              author: string;
-                            },
-                            index: number
-                          ) => (
-                            <TrendingPost
-                              key={item._id}
-                              index={index}
-                              item={item}
-                            />
-                          )
-                        )
+                        .map((item: PostProps, index: number) => (
+                          <TrendingPost
+                            key={item._id}
+                            index={index}
+                            item={item}
+                          />
+                        ))
                     ) : (
                       <Preloader />
                     )}
