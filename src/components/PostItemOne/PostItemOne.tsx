@@ -1,7 +1,7 @@
 import React from "react";
 import "./postitemone.css";
 import Link from "next/link";
-import { PostProps } from "@/section/Post/Posts";
+import { PostProps } from "@/sections/Post/Posts";
 
 export default function PostItemOne({
   large,

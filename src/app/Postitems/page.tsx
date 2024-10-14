@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import PostItemOne from "@/components/PostItemOne/PostItemOne";
 import PageTitle from "@/components/PageTitle/PageTitle";
-import { PostProps } from "@/section/Post/Posts";
+import { PostProps } from "@/sections/Post/Posts";
 import PreLoader from "@/components/Preloader/PreLoader";
 
 export default function PostItems() {
