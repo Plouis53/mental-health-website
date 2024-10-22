@@ -7,8 +7,6 @@ import { initialPost, PostProps } from "@/sections/Post/Posts";
 import Preloader from "@/components/Preloader/PreLoader";
 import SidePostItem from "@/components/SidePostItem/SidePostItem";
 
-import Image from "next/image";
-
 import "./style.css";
 
 export default function PostItem({ params }: { params: { id: string } }) {
@@ -90,14 +88,6 @@ export default function PostItem({ params }: { params: { id: string } }) {
                   </p>
 
                   <figure className="my-4">
-                    {/* <Image
-                      src={`/${item.img}`}
-                      alt=""
-                      className="img-fluid"
-                      width={100}
-                      height={100}
-                      layout="responsive"
-                    /> */}
                     <img src={`/${item.img}`} alt="" className="img-fluid" />
                     <figcaption>
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
