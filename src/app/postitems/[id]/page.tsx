@@ -7,6 +7,8 @@ import { initialPost, PostProps } from "@/sections/Post/Posts";
 import Preloader from "@/components/Preloader/PreLoader";
 import SidePostItem from "@/components/SidePostItem/SidePostItem";
 
+import Image from "next/image";
+
 import "./style.css";
 
 export default function PostItem({ params }: { params: { id: string } }) {
@@ -75,6 +77,7 @@ export default function PostItem({ params }: { params: { id: string } }) {
                     </span>
                     {item.brief && item.brief.substring(1)}
                   </p>
+
                   <p>
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                     Ratione officia sed, suscipit distinctio, numquam omnis quo
@@ -85,9 +88,9 @@ export default function PostItem({ params }: { params: { id: string } }) {
                     neque repellat sint, accusamus beatae, cumque autem tempore
                     quisquam quam eligendi harum debitis.
                   </p>
+
                   <figure className="my-4">
                     {/* <Image
-                      img
                       src={`/${item.img}`}
                       alt=""
                       className="img-fluid"

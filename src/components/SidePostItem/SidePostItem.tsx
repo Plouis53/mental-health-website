@@ -1,5 +1,4 @@
 import { PostProps } from "@/sections/Post/Posts";
-
 import React from "react";
 import Link from "next/link";
 
@@ -27,7 +26,9 @@ export default function SidePostItem({ item }: { item: PostProps }) {
       <h2 className="mb-2">
         <Link href={`/postitems/${item._id}`}>{item.title}</Link>
       </h2>
-      <span className="author mb-3 d-block">{item.author}</span>
+      {item.author && (
+        <span className="author mb-3 d-block">{item.author}</span>
+      )}
     </div>
   );
 }

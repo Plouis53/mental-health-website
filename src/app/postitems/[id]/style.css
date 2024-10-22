@@ -24,8 +24,8 @@
 
 .post-content figure {
   position: relative;
-  left: 52%;
-  min-width: 990px;
+  left: 45%; /*Originally 52%*/
+  min-width: 890px; /*Originally 990%*/
   transform: translateX(-50%);
 }
 
