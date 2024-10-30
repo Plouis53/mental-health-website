@@ -2,16 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 
-export default function CreatePostItem() {
-  const intialState = {
-    title: "",
-    img: "",
-    category: "",
-    author: "",
-    brief: "",
-    validate: "",
-  };
+export const intialState = {
+  title: "",
+  img: "",
+  category: "",
+  author: "",
+  brief: "",
+  validate: "",
+};
 
+export default function CreatePostItem() {
   const [text, setText] = useState(intialState);
 
   const handleTextChange = (
