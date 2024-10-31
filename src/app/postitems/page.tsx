@@ -3,11 +3,10 @@
 import React, { useState, useEffect } from "react";
 import PostItemOne from "@/components/PostItemOne/PostItemOne";
 import PageTitle from "@/components/PageTitle/PageTitle";
-import { PostProps } from "@/sections/Post/Posts";
 import PreLoader from "@/components/Preloader/PreLoader";
 
 export default function PostItems() {
-  const [items, setItems] = useState({});
+  const [items, setItems] = useState<[]>([]);
 
   const getItemsData = () => {
     fetch("/api/postitems")
@@ -27,11 +26,22 @@ export default function PostItems() {
           <div className="row">
             <PageTitle title="Post Items List" />
             {items && items.length > 0 ? (
-              items.map((item: PostProps) => (
-                <div className="col-lg-3 col-md-6" key={item._id}>
-                  <PostItemOne large={false} item={item} />
-                </div>
-              ))
+              items.map(
+                (item: {
+                  _id: string;
+                  img: string;
+                  category: string;
+                  date: string;
+                  title: string;
+                  brief: string;
+                  avatar: string;
+                  author: string;
+                }) => (
+                  <div className="col-lg-3 col-md-6" key={item._id}>
+                    <PostItemOne large={false} item={item} />
+                  </div>
+                )
+              )
             ) : (
               <PreLoader />
             )}
