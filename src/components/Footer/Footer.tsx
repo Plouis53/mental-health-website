@@ -40,7 +40,7 @@ export default function Footer() {
         <div className="container">
           <div className="row g-5">
             <div className="col-lg-4">
-              <h3 className="footer-heading">Digital News</h3>
+              <h3 className="footer-heading">Clinical Digest</h3>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam
                 ab, perspiciatis beatae autem deleniti voluptate nulla a

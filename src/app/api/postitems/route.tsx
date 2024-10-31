@@ -10,6 +10,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   const postItem = await request.json();
+  
   try {
     const savedItem = await new PostItem({ ...postItem }).save();
     return new Response(JSON.stringify(savedItem), {
