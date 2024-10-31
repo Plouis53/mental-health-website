@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import "./posts.css";
+// import "./posts.css";
 import PostItemOne from "@/components/PostItemOne/PostItemOne";
 import TrendingPost from "@/components/Trending/TrendingPost";
 import Preloader from "@/components/Preloader/PreLoader";
@@ -18,21 +18,10 @@ export interface PostProps {
   author: string;
 }
 
-export const initialPost = {
-  _id: "",
-  img: "",
-  category: "",
-  date: "",
-  title: "",
-  brief: "",
-  avatar: "",
-  author: "",
-};
-
 export default function Posts() {
   const router = useRouter();
-  const [items, setItems] = useState([]);
-  const [item, setItem] = useState(initialPost);
+  const [items, setItems] = useState<any | []>([]);
+  const [item, setItem] = useState<any>({});
 
   const getItemsData = () => {
     fetch("/api/postitems")
@@ -109,13 +98,27 @@ export default function Posts() {
                     {items && items.length > 0 ? (
                       items
                         .filter((item: { trending: boolean }) => item.trending)
-                        .map((item: PostProps, index: number) => (
-                          <TrendingPost
-                            key={item._id}
-                            index={index}
-                            item={item}
-                          />
-                        ))
+                        .map(
+                          (
+                            item: {
+                              _id: string;
+                              img: string;
+                              category: string;
+                              date: string;
+                              title: string;
+                              brief: string;
+                              avatar: string;
+                              author: string;
+                            },
+                            index: number
+                          ) => (
+                            <TrendingPost
+                              key={item._id}
+                              index={index}
+                              item={item}
+                            />
+                          )
+                        )
                     ) : (
                       <Preloader />
                     )}
