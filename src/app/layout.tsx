@@ -5,7 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 // import glightbox
-// import "glightbox/dist/css/glightbox.css";
+import "glightbox/dist/css/glightbox.css";
 
 // import aos css
 import "aos/dist/aos.css";
