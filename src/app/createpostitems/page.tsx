@@ -2,26 +2,36 @@
 
 import React, { useState, useEffect } from "react";
 
-export const intialState = {
-  title: "",
-  img: "",
-  category: "",
-  author: "",
-  brief: "",
-  validate: "",
-};
+// import AOS
+import AOS from "aos";
 
 export default function CreatePostItem() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-in-out",
+      once: false,
+      mirror: false,
+    });
+  }, []);
+
+  const intialState = {
+    title: "",
+    img: "",
+    category: "",
+    author: "",
+    brief: "",
+    validate: "",
+  };
+
   const [text, setText] = useState(intialState);
 
-  const handleTextChange = (
-    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleTextChange = (e: Event | any) => {
     const { name, value } = e.target;
     setText({ ...text, [name]: value, validate: "" });
   };
 
-  const handleFormSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFormSubmit = async (e: Event | any) => {
     e.preventDefault();
     // simple form validation
     if (
@@ -60,7 +70,7 @@ export default function CreatePostItem() {
   return (
     <main id="main">
       <section className="create-post-content">
-        <div className="container">
+        <div className="container" data-aos="fade-up">
           <div className="row d-flex justify-content-center">
             <div className="col-lg-10">
               <div className="row  d-flex justify-content-center mt-5">
