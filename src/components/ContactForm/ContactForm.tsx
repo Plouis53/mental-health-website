@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import "./contactForm.css";
 
 export default function ContactForm() {
-  const intialState = {
+  const initialState = {
     name: "",
     email: "",
     subject: "",
@@ -12,7 +12,7 @@ export default function ContactForm() {
     validate: "",
   };
 
-  const [text, setText] = useState(intialState);
+  const [text, setText] = useState(initialState);
 
   const handleTextChange = (e: Event | any) => {
     const { name, value } = e.target;

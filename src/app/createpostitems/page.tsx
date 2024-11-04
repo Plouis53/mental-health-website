@@ -15,7 +15,7 @@ export default function CreatePostItem() {
     });
   }, []);
 
-  const intialState = {
+  const initialState = {
     title: "",
     img: "",
     category: "",
@@ -24,7 +24,7 @@ export default function CreatePostItem() {
     validate: "",
   };
 
-  const [text, setText] = useState(intialState);
+  const [text, setText] = useState(initialState);
 
   const handleTextChange = (e: Event | any) => {
     const { name, value } = e.target;
