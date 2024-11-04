@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import "./posts.css";
+import "./posts.css"
 import PostItemOne from "@/components/PostItemOne/PostItemOne";
 import TrendingPost from "@/components/Trending/TrendingPost";
 import Preloader from "@/components/Preloader/PreLoader";

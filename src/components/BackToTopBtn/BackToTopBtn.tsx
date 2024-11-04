@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-// import "@/components/BackToTopBtn/backToTopBtn";
+import "./backToTopBtn.css";
 
 export default function BackToTopBtn() {
   const [scroll, setScroll] = useState(0);
