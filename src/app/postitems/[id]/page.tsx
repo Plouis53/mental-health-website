@@ -25,7 +25,7 @@ export default function PostItem({ params }: { params: { id: string } }) {
 
   const [tabs, setTabs] = useState(tabsData);
 
-  const handleTabActive = (id: number): void => {
+  const handleTabActive = (id: number) => {
     setTabs(
       tabsData.map((tab) => {
         tab.active = false;
