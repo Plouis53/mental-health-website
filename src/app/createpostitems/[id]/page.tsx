@@ -1,13 +1,16 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-import { intialState } from "../page";
+// import AOS
+import AOS from "aos";
 
 export default function EditPostItem({ params }: { params: { id: string } }) {
   const id = params.id;
-  const [text, setText] = useState(intialState);
+  const router = useRouter();
 
+  const [text, setText] = useState<any | {}>({});
   const getSinglePostData = () => {
     fetch(`/api/postitems/${id}`)
       .then((res) => {
@@ -24,14 +27,12 @@ export default function EditPostItem({ params }: { params: { id: string } }) {
     getSinglePostData();
   }, []);
 
-  const handleTextChange = (
-    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleTextChange = (e: Event | any) => {
     const { name, value } = e.target;
     setText({ ...text, [name]: value, validate: "" });
   };
 
-  const handleFormSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFormSubmit = async (e: Event | any) => {
     e.preventDefault();
     // simple form validation
     if (
@@ -66,6 +67,15 @@ export default function EditPostItem({ params }: { params: { id: string } }) {
       console.error("Error:", error);
     }
   };
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-in-out",
+      once: false,
+      mirror: false,
+    });
+  }, []);
 
   return (
     <main id="main">
