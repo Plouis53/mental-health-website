@@ -1,0 +1,18 @@
+/* components/ConfirmDeleteModal.css */
+
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-body {
+  color: #333;
+}
+
+.btn-danger {
+  background-color: #dc35352f;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+}
