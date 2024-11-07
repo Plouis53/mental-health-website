@@ -8,15 +8,18 @@ import AOS from "aos";
 import SidePostItem from "@/components/SidePostItem/SidePostItem";
 import Link from "next/link";
 import Preloader from "@/components/Preloader/PreLoader";
+import ConfirmDeleteModal from "@/components/ConfirmDeleteModal/ConfirmDeleteModal";
 
 import "./style.css";
 import "../../../components/PostItemOne/postitemone.css";
+
 
 export default function PostItem({ params }: { params: { id: string } }) {
   const id: string = params.id;
   const router = useRouter();
   const [item, setItem] = useState<any | {}>({});
   const [posts, setPosts] = useState<any | []>([]);
+  const [isModalVisible, setModalVisible] = useState(false); // State for modal visibility
 
   const tabsData = [
     { id: 1, name: "Popular", active: true },
@@ -91,6 +94,19 @@ export default function PostItem({ params }: { params: { id: string } }) {
     }
   };
 
+  const handleDeleteClick = () => {
+    setModalVisible(true); // Show modal when delete button is clicked
+  };
+
+  const handleConfirmDelete = () => {
+    setModalVisible(false);
+    handleDeletePost(id); // Delete post after confirmation
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false); // Close modal without deleting
+  };
+
   return (
     <main id="main">
       <section className="single-post-content">
@@ -115,6 +131,13 @@ export default function PostItem({ params }: { params: { id: string } }) {
                     </span>
                     {item.brief && item.brief.substring(1)}
                   </p>
+                  {/* Modal Component */}
+                  <ConfirmDeleteModal
+                    isVisible={isModalVisible}
+                    onClose={handleCloseModal}
+                    onConfirm={handleConfirmDelete}
+                    itemTitle={item.title}
+                  />
 
                   <p>
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -191,7 +214,8 @@ export default function PostItem({ params }: { params: { id: string } }) {
                   <div className="d-flex justify-content-center gap-4">
                     <a
                       className="btn btn-primary"
-                      onClick={() => handleDeletePost(id)}
+                      // onClick={() => handleDeletePost(id)}
+                      onClick={handleDeleteClick}
                     >
                       <i className="bi bi-trash3"></i>
                     </a>

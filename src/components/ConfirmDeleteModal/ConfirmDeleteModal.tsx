@@ -1,39 +1,47 @@
 "use client";
 
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
-import "./confirmDeleteModal.css"; // Import the CSS file
+import "./confirmDeleteModal.css";
 
-interface ConfirmDeleteModalProps {
-  show: boolean;
-  handleCloseModal: () => void;
-  handleDelete: () => void;
-}
+type ConfirmDeleteModalProps = {
+  isVisible: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+  itemTitle?: string;
+};
 
-export default function ConfirmDeleteModal({
-  show,
-  handleCloseModal,
-  handleDelete,
-}: ConfirmDeleteModalProps) {
+const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({
+  isVisible,
+  onClose,
+  onConfirm,
+  itemTitle,
+}) => {
+  if (!isVisible) return null;
+
   return (
-    <Modal show={show} onHide={handleCloseModal} centered>
-      <Modal.Header closeButton>
-        <Modal.Title>Delete Confirmation</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <p>
-          Are you sure you want to delete this item? This action cannot be
-          undone.
-        </p>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleCloseModal}>
-          Cancel
-        </Button>
-        <Button variant="danger" onClick={handleDelete}>
-          Delete
-        </Button>
-      </Modal.Footer>
-    </Modal>
+    <div className="modal__container-confirm">
+      <div className="modal__confirm">
+        <button className="modal__close-button" onClick={onClose}>
+          &times;
+        </button>
+        <div className="modal__container_confirm">
+          <h3 className="modal__text_confirm">Confirm Deletion</h3>
+          <p>
+            Are you sure you want to delete{" "}
+            <strong>{itemTitle ? `"${itemTitle}"` : "this item"}</strong>?
+          </p>
+        </div>
+        <div className="modal-buttons">
+          <button onClick={onConfirm} className="modal__button_confirm">
+            Delete
+          </button>
+          <button onClick={onClose} className="modal__button_cancel">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
   );
-}
+};
+
+export default ConfirmDeleteModal;
