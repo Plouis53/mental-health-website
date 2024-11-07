@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import "./confirmDeleteModal.css";
 
 type ConfirmDeleteModalProps = {
@@ -16,6 +16,24 @@ const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({
   onConfirm,
   itemTitle,
 }) => {
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const handleEscapeKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    // Attach the event listener
+    document.addEventListener("keydown", handleEscapeKey);
+
+    // Cleanup function to remove the event listener when modal is closed
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, [isVisible, onClose]);
+
   if (!isVisible) return null;
 
   return (
