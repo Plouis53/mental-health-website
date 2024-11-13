@@ -30,29 +30,29 @@ export default function Contact() {
           <div className="row gy-4">
             <div className="col-md-4">
               <div className="info-item">
-                <i className="bi bi-geo-alt"></i>
-                <h3>Address</h3>
-                <address>Your Street, State 123456, Country</address>
+                {/* <i className="bi bi-geo-alt"></i> */}
+                {/* <h3>Address</h3>
+                <address>Your Street, State 123456, Country</address> */} 
               </div>
             </div>
 
             <div className="col-md-4">
               <div className="info-item info-item-borders">
-                <i className="bi bi-phone"></i>
-                <h3>Phone Number</h3>
+                {/* <i className="bi bi-phone"></i> */}
+                {/* <h3>Phone Number</h3>
                 <p>
                   <a href="tel:+155895548855">+1 5589 55488 55</a>
-                </p>
+                </p> */}
               </div>
             </div>
 
             <div className="col-md-4">
               <div className="info-item">
-                <i className="bi bi-envelope"></i>
-                <h3>Email</h3>
+                {/* <i className="bi bi-envelope"></i> */}
+                {/* <h3>Email</h3>
                 <p>
                   <a href="mailto:info@example.com">info@example.com</a>
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
