@@ -39,7 +39,7 @@ export default function ContactForm() {
       setText({ ...text, validate: "loading" });
 
       // Make the fetch request to /api/contact
-      const response = await fetch("/api/contact/", {
+      const response = await fetch(`/api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,6 +51,9 @@ export default function ContactForm() {
           message: text.message,
         }),
       });
+
+      // Log the response for debugging purposes
+      console.log("Fetch Response:", response);
 
       if (response.ok) {
         setText({ ...initialState, validate: "success" });
