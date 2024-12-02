@@ -8,12 +8,8 @@ if (process.env.SENDGRID_API_KEY) {
   console.error("SendGrid API Key is missing in environment variables.");
 }
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== "POST") {
-    res.setHeader("Allow", ["POST"]);
-    return res.status(405).json({ error: `Method ${req.method} Not Allowed` });
-  }
-
+// Handling POST requests
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
   try {
     console.log("Handling POST request to /api/contact");
 
@@ -52,9 +48,18 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     console.error("Error in sending email:", error);
     return res.status(500).json({ error: "Failed to send email" });
   }
-};
+}
 
-export default handler;
+// Example GET handler (if needed)
+export async function GET(req: NextApiRequest, res: NextApiResponse) {
+  try {
+    console.log("Handling GET request to /api/contact");
+    res.status(200).json({ message: "Contact API is working" });
+  } catch (error) {
+    console.error("Error handling GET request:", error);
+    res.status(500).json({ error: "Something went wrong" });
+  }
+}
 
 // import { NextApiRequest, NextApiResponse } from "next";
 // import sgMail from "@sendgrid/mail";

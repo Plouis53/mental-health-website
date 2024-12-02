@@ -3,8 +3,16 @@
 import React, { useState } from "react";
 import "./contactForm.css";
 
+interface FormState {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  validate: string;
+}
+
 export default function ContactForm() {
-  const initialState = {
+  const initialState: FormState = {
     name: "",
     email: "",
     subject: "",
@@ -12,7 +20,7 @@ export default function ContactForm() {
     validate: "",
   };
 
-  const [text, setText] = useState(initialState);
+  const [text, setText] = useState<FormState>(initialState);
 
   const handleTextChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -39,29 +47,29 @@ export default function ContactForm() {
       setText({ ...text, validate: "loading" });
 
       // Make the fetch request to /api/contact
-      const response = await fetch(`/api/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: text.name,
-          email: text.email,
-          subject: text.subject,
-          message: text.message,
-        }),
-      });
-
-      // Log the response for debugging purposes
-      console.log("Fetch Response:", response);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/contact`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: text.name,
+            email: text.email,
+            subject: text.subject,
+            message: text.message,
+          }),
+        }
+      );
 
       if (response.ok) {
         setText({ ...initialState, validate: "success" });
         console.log("Success:", response.status);
-      } else {
-        setText({ ...text, validate: "error" });
+      } else if (!response.ok) {
         const errorText = await response.text();
         console.error("Server Response:", errorText);
+        setText({ ...text, validate: "error" });
       }
     } catch (error) {
       setText({ ...text, validate: "error" });
