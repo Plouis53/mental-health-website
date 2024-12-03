@@ -47,21 +47,18 @@ export default function ContactForm() {
       setText({ ...text, validate: "loading" });
 
       // Make the fetch request to /api/contact
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/contact`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: text.name,
-            email: text.email,
-            subject: text.subject,
-            message: text.message,
-          }),
-        }
-      );
+      const response = await fetch(`/api/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: text.name,
+          email: text.email,
+          subject: text.subject,
+          message: text.message,
+        }),
+      });
 
       if (response.ok) {
         setText({ ...initialState, validate: "success" });
@@ -74,6 +71,7 @@ export default function ContactForm() {
     } catch (error) {
       setText({ ...text, validate: "error" });
       console.error("Error:", error);
+      console.log("Sending data:", text);
     }
   };
 

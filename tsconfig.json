@@ -7,13 +7,16 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node", // Changed from "bundler" to "node"
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "target": "es5", // Added target
-    "forceConsistentCasingInFileNames": true, // Added to ensure consistent casing
+    "target": "es6", // Changed to es6 (es5 is very old and may lack some modern features)
+    "forceConsistentCasingInFileNames": true,
+    "strictNullChecks": true, // Added to help with stricter null checking and safer code
+    "noImplicitAny": true, // Added to avoid `any` type accidentally, for stronger type safety
+    "allowSyntheticDefaultImports": true, // Added to prevent issues with default imports
     "plugins": [
       {
         "name": "next"
@@ -24,8 +27,37 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist", "build"] // Added dist and build folders to exclude generated files
 }
+
+// {
+//   "compilerOptions": {
+//     "lib": ["dom", "dom.iterable", "esnext"],
+//     "allowJs": true,
+//     "skipLibCheck": true,
+//     "strict": true,
+//     "noEmit": true,
+//     "esModuleInterop": true,
+//     "module": "esnext",
+//     "moduleResolution": "node", // Changed from "bundler" to "node"
+//     "resolveJsonModule": true,
+//     "isolatedModules": true,
+//     "jsx": "preserve",
+//     "incremental": true,
+//     "target": "es5", // Added target
+//     "forceConsistentCasingInFileNames": true, // Added to ensure consistent casing
+//     "plugins": [
+//       {
+//         "name": "next"
+//       }
+//     ],
+//     "paths": {
+//       "@/*": ["./src/*"]
+//     }
+//   },
+//   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+//   "exclude": ["node_modules"]
+// }
 
 // {
 //   "compilerOptions": {

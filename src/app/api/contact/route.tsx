@@ -3,6 +3,7 @@ import sgMail from "@sendgrid/mail";
 
 // Set up SendGrid API key from environment variable
 if (process.env.SENDGRID_API_KEY) {
+  console.log("SendGrid API Key found."); // <-- Add this to debug
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 } else {
   console.error("SendGrid API Key is missing in environment variables.");
@@ -10,8 +11,9 @@ if (process.env.SENDGRID_API_KEY) {
 
 // Handling POST requests
 export async function POST(req: NextApiRequest, res: NextApiResponse) {
+  console.log("POST request received at /api/contact");
   try {
-    console.log("Handling POST request to /api/contact");
+    // console.log("Handling POST request to /api/contact");
 
     // Parse the request body
     const { name, email, subject, message } = req.body;
