@@ -1,236 +1,149 @@
 "use client";
 
 import React, { useState } from "react";
+import "./contactForm.css";
 
-const ContactForm = () => {
-  const initialState = { name: "", email: "", subject: "", message: "" };
-  const [form, setForm] = useState(initialState);
-  const [status, setStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
+interface FormState {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  validate: string;
+}
 
-  const handleChange = (
+export default function ContactForm() {
+  const initialState: FormState = {
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+    validate: "",
+  };
+
+  const [text, setText] = useState<FormState>(initialState);
+
+  const handleTextChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+    setText({ ...text, [name]: value, validate: "" });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("loading");
+
+    // Simple form validation
+    if (
+      text.name === "" ||
+      text.email === "" ||
+      text.subject === "" ||
+      text.message === ""
+    ) {
+      setText({ ...text, validate: "incomplete" });
+      return;
+    }
 
     try {
-      const response = await fetch("/api/contact", {
+      setText({ ...text, validate: "loading" });
+
+      // Make the fetch request to /api/contact
+      const response = await fetch(`/api/contact`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: text.name,
+          email: text.email,
+          subject: text.subject,
+          message: text.message,
+        }),
       });
 
       if (response.ok) {
-        setStatus("success");
-        setForm(initialState);
-      } else {
-        setStatus("error");
+        setText({ ...initialState, validate: "success" });
+        console.log("Success:", response.status);
+      } else if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Server Response:", errorText);
+        setText({ ...text, validate: "error" });
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
-      setStatus("error");
+      setText({ ...text, validate: "error" });
+      console.error("Error:", error);
+      console.log("Sending data:", text);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="contact-form">
-      <h2>Contact Us</h2>
-      <input
-        type="text"
-        name="name"
-        placeholder="Your Name"
-        value={form.name}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Your Email"
-        value={form.email}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="text"
-        name="subject"
-        placeholder="Subject"
-        value={form.subject}
-        onChange={handleChange}
-        required
-      />
-      <textarea
-        name="message"
-        placeholder="Your Message"
-        value={form.message}
-        onChange={handleChange}
-        rows={5}
-        required
-      ></textarea>
-      <button type="submit" disabled={status === "loading"}>
-        {status === "loading" ? "Sending..." : "Send Message"}
-      </button>
-      {status === "success" && <p>Email sent successfully!</p>}
-      {status === "error" && <p>Failed to send email. Please try again.</p>}
+    <form className="contact-form" onSubmit={handleSubmitForm}>
+      <div className="row">
+        <div className="form-group col-md-6">
+          <input
+            type="text"
+            name="name"
+            value={text.name}
+            className="form-control"
+            id="name"
+            placeholder="Your Name"
+            onChange={handleTextChange}
+          />
+        </div>
+        <div className="form-group col-md-6">
+          <input
+            type="email"
+            className="form-control"
+            name="email"
+            value={text.email}
+            id="email"
+            placeholder="Your Email"
+            onChange={handleTextChange}
+          />
+        </div>
+      </div>
+      <div className="form-group">
+        <input
+          type="text"
+          className="form-control"
+          name="subject"
+          value={text.subject}
+          id="subject"
+          placeholder="Subject"
+          onChange={handleTextChange}
+        />
+      </div>
+      <div className="form-group">
+        <textarea
+          className="form-control"
+          name="message"
+          value={text.message}
+          rows={5}
+          placeholder="Message"
+          onChange={handleTextChange}
+        ></textarea>
+      </div>
+      <div className="my-3">
+        {text.validate === "loading" && (
+          <div className="loading">Sending Message</div>
+        )}
+        {text.validate === "incomplete" && (
+          <div className="error-message">Please fill in all above details</div>
+        )}
+        {text.validate === "success" && (
+          <div className="sent-message">
+            Your message was sent. We will contact you ASAP. Thank you!
+          </div>
+        )}
+        {text.validate === "error" && (
+          <div className="error-message">Server Error</div>
+        )}
+      </div>
+      <div className="text-center">
+        <button type="submit">Send Message</button>
+      </div>
     </form>
   );
-};
-
-export default ContactForm;
-
-// "use client";
-
-// import React, { useState } from "react";
-// import "./contactForm.css";
-
-// interface FormState {
-//   name: string;
-//   email: string;
-//   subject: string;
-//   message: string;
-//   validate: string;
-// }
-
-// export default function ContactForm() {
-//   const initialState: FormState = {
-//     name: "",
-//     email: "",
-//     subject: "",
-//     message: "",
-//     validate: "",
-//   };
-
-//   const [text, setText] = useState<FormState>(initialState);
-
-//   const handleTextChange = (
-//     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-//   ) => {
-//     const { name, value } = e.target;
-//     setText({ ...text, [name]: value, validate: "" });
-//   };
-
-//   const handleSubmitForm = async (e: React.FormEvent) => {
-//     e.preventDefault();
-
-//     // Simple form validation
-//     if (
-//       text.name === "" ||
-//       text.email === "" ||
-//       text.subject === "" ||
-//       text.message === ""
-//     ) {
-//       setText({ ...text, validate: "incomplete" });
-//       return;
-//     }
-
-//     try {
-//       setText({ ...text, validate: "loading" });
-
-//       // Make the fetch request to /api/contact
-//       const response = await fetch(`/api/contact`, {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//           name: text.name,
-//           email: text.email,
-//           subject: text.subject,
-//           message: text.message,
-//         }),
-//       });
-
-//       if (response.ok) {
-//         setText({ ...initialState, validate: "success" });
-//         console.log("Success:", response.status);
-//       } else if (!response.ok) {
-//         const errorText = await response.text();
-//         console.error("Server Response:", errorText);
-//         setText({ ...text, validate: "error" });
-//       }
-//     } catch (error) {
-//       setText({ ...text, validate: "error" });
-//       console.error("Error:", error);
-//       console.log("Sending data:", text);
-//     }
-//   };
-
-//   return (
-//     <form className="contact-form" onSubmit={handleSubmitForm}>
-//       <div className="row">
-//         <div className="form-group col-md-6">
-//           <input
-//             type="text"
-//             name="name"
-//             value={text.name}
-//             className="form-control"
-//             id="name"
-//             placeholder="Your Name"
-//             onChange={handleTextChange}
-//           />
-//         </div>
-//         <div className="form-group col-md-6">
-//           <input
-//             type="email"
-//             className="form-control"
-//             name="email"
-//             value={text.email}
-//             id="email"
-//             placeholder="Your Email"
-//             onChange={handleTextChange}
-//           />
-//         </div>
-//       </div>
-//       <div className="form-group">
-//         <input
-//           type="text"
-//           className="form-control"
-//           name="subject"
-//           value={text.subject}
-//           id="subject"
-//           placeholder="Subject"
-//           onChange={handleTextChange}
-//         />
-//       </div>
-//       <div className="form-group">
-//         <textarea
-//           className="form-control"
-//           name="message"
-//           value={text.message}
-//           rows={5}
-//           placeholder="Message"
-//           onChange={handleTextChange}
-//         ></textarea>
-//       </div>
-//       <div className="my-3">
-//         {text.validate === "loading" && (
-//           <div className="loading">Sending Message</div>
-//         )}
-//         {text.validate === "incomplete" && (
-//           <div className="error-message">Please fill in all above details</div>
-//         )}
-//         {text.validate === "success" && (
-//           <div className="sent-message">
-//             Your message was sent. We will contact you ASAP. Thank you!
-//           </div>
-//         )}
-//         {text.validate === "error" && (
-//           <div className="error-message">Server Error</div>
-//         )}
-//       </div>
-//       <div className="text-center">
-//         <button type="submit">Send Message</button>
-//       </div>
-//     </form>
-//   );
-// }
+}
 
 // "use client";
 
