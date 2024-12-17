@@ -1,67 +1,111 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 import sgMail from "@sendgrid/mail";
 
-// Set up SendGrid API key from environment variable
-if (process.env.SENDGRID_API_KEY) {
-  console.log("SendGrid API Key found."); // <-- Add this to debug
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-} else {
-  console.error("SendGrid API Key is missing in environment variables.");
-}
+sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
-// Handling POST requests
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
-  console.log("POST request received at /api/contact");
+export async function POST(req: NextRequest) {
   try {
-    // console.log("Handling POST request to /api/contact");
+    const { name, email, subject, message } = await req.json();
 
-    // Parse the request body
-    const { name, email, subject, message } = req.body;
-
-    // Validate the data
     if (!name || !email || !subject || !message) {
-      console.error("Validation failed: missing required fields.");
-      return res.status(400).json({ error: "Missing required fields" });
+      return NextResponse.json(
+        { message: "All fields are required" },
+        { status: 400 }
+      );
     }
 
-    console.log("Message details:", { name, email, subject, message });
-
-    // SendGrid email settings
+    // Email content
     const msg = {
-      to: process.env.EMAIL_USER, // Your email address (to receive contact form messages)
-      from: "phillippe.devtech@gmail.com", // Use a verified email address from SendGrid
-      subject: `New Contact Form Submission from ${name}`,
-      text: `
-        Name: ${name}
-        Email: ${email}
-        Subject: ${subject}
-        Message: ${message}
+      to: process.env.SENDGRID_SENDER as string, // Your receiving email
+      from: process.env.SENDGRID_SENDER as string, // Your SendGrid verified sender email
+      subject: `New Contact Form Submission: ${subject}`,
+      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+      html: `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong> ${message}</p>
       `,
     };
 
-    // Send the email using SendGrid
     await sgMail.send(msg);
 
-    console.log("Email sent successfully.");
-
-    // Respond with success status
-    return res.status(201).json({ message: "Message sent successfully" });
+    return NextResponse.json(
+      { message: "Email sent successfully!" },
+      { status: 200 }
+    );
   } catch (error) {
-    console.error("Error in sending email:", error);
-    return res.status(500).json({ error: "Failed to send email" });
+    console.error("Error sending email:", error);
+    return NextResponse.json(
+      { message: "Failed to send email" },
+      { status: 500 }
+    );
   }
 }
 
-// Example GET handler (if needed)
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
-  try {
-    console.log("Handling GET request to /api/contact");
-    res.status(200).json({ message: "Contact API is working" });
-  } catch (error) {
-    console.error("Error handling GET request:", error);
-    res.status(500).json({ error: "Something went wrong" });
-  }
-}
+// import { NextApiRequest, NextApiResponse } from "next";
+// import sgMail from "@sendgrid/mail";
+
+// // Set up SendGrid API key from environment variable
+// if (process.env.SENDGRID_API_KEY) {
+//   console.log("SendGrid API Key found."); // <-- Add this to debug
+//   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+// } else {
+//   console.error("SendGrid API Key is missing in environment variables.");
+// }
+
+// // Handling POST requests
+// export async function POST(req: NextApiRequest, res: NextApiResponse) {
+//   console.log("POST request received at /api/contact");
+//   try {
+//     // console.log("Handling POST request to /api/contact");
+
+//     // Parse the request body
+//     const { name, email, subject, message } = req.body;
+
+//     // Validate the data
+//     if (!name || !email || !subject || !message) {
+//       console.error("Validation failed: missing required fields.");
+//       return res.status(400).json({ error: "Missing required fields" });
+//     }
+
+//     console.log("Message details:", { name, email, subject, message });
+
+//     // SendGrid email settings
+//     const msg = {
+//       to: process.env.EMAIL_USER, // Your email address (to receive contact form messages)
+//       from: "phillippe.devtech@gmail.com", // Use a verified email address from SendGrid
+//       subject: `New Contact Form Submission from ${name}`,
+//       text: `
+//         Name: ${name}
+//         Email: ${email}
+//         Subject: ${subject}
+//         Message: ${message}
+//       `,
+//     };
+
+//     // Send the email using SendGrid
+//     await sgMail.send(msg);
+
+//     console.log("Email sent successfully.");
+
+//     // Respond with success status
+//     return res.status(201).json({ message: "Message sent successfully" });
+//   } catch (error) {
+//     console.error("Error in sending email:", error);
+//     return res.status(500).json({ error: "Failed to send email" });
+//   }
+// }
+
+// // Example GET handler (if needed)
+// export async function GET(req: NextApiRequest, res: NextApiResponse) {
+//   try {
+//     console.log("Handling GET request to /api/contact");
+//     res.status(200).json({ message: "Contact API is working" });
+//   } catch (error) {
+//     console.error("Error handling GET request:", error);
+//     res.status(500).json({ error: "Something went wrong" });
+//   }
+// }
 
 // import { NextApiRequest, NextApiResponse } from "next";
 // import sgMail from "@sendgrid/mail";
